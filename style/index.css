@@ -1,0 +1,173 @@
+body {
+    background-color: #e3f2fd;
+    background-size: 100%;
+    text-align: center;
+}
+
+/*************************/
+/*                       */
+/*         HEADER        */
+/*                       */
+/*************************/
+
+header {
+    text-align: left;
+}
+
+header h1 {
+    margin-left: 10%;
+}
+
+header .line {
+    width: 90%;
+    height: 2px;
+    background-color: black;
+}
+
+/*************************/
+/*                       */
+/*         MAIN          */
+/*                       */
+/*************************/
+
+main table th {
+    background-color: snow;
+}
+
+main table td a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/*****************************/
+/*                           */
+/*       WELCOME PAGE        */
+/*                           */
+/*****************************/
+
+#calendar table {
+    table-layout: fixed;
+    box-shadow: 0 20px 20px 0 rgba(0,0,0,0.5);
+}
+
+#calendar table tr th {
+    text-align: center;
+}
+
+#calendar #welcome-hidden-touch table tr td {
+    width: auto;
+    height: 7em;
+    text-align: center;
+}
+
+#calendar #welcome-hidden-desktop table tr td {
+    width: auto;
+    text-align: center;
+}
+
+#calendar button {
+    margin-top: 20px;
+    width: 200px;
+}
+
+#main-buttons a {
+    width: 200px;
+}
+
+/*****************************/
+/*                           */
+/*         WORKPLACE         */
+/*                           */
+/*****************************/
+
+#work table th {
+    text-align: center;
+}
+
+#work table td {
+    text-align: center;
+}
+
+#work table .workplace {
+    width: 90%;
+}
+
+#work table .editDelete {
+    width: 5%;
+}
+
+#edit-button {
+    background:none;
+    color:white;
+    border: none;
+    max-width: 33px;
+    cursor: pointer;
+}
+
+#edit-button:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+}
+
+#details-workplace table tr td {
+    height: 2em;
+}
+
+#details-workplace button, #details-workplace a {
+    margin: 10px;
+    width: 200px;
+}
+
+/*****************************/
+/*                           */
+/*           SHIFTS          */
+/*                           */
+/*****************************/
+
+#details-shift table tr td {
+    width: 50%;
+}
+
+#details-shift button, #details-shift a {
+    width: 200px;
+    margin: 0.5em 0;
+}
+
+#analysis table tr td {
+    height: 2em;
+}
+
+#workplace-input button, 
+#workplace-input a, 
+#shift-input button, 
+#shift-input a, 
+#profile-input button, 
+#profile-input a,
+#profile-view button,
+#profile-view a {
+    width: 100px;
+}
+
+#shift-input, #workplace-input {
+    margin: auto;   
+}
+
+/*****************************/
+/*                           */
+/*       PROFILE PAGE        */
+/*                           */
+/*****************************/
+
+#profile-edit, #profile-input {
+    margin: auto;
+}
+
+#profile-delete {
+    margin: auto;
+}
+
+#profile-view table tr td {
+    width: auto;
+    word-wrap: break-word;
+}
