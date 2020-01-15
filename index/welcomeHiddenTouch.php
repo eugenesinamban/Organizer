@@ -118,13 +118,16 @@
                                         //  
                                         //  shortens name if it's too long
                                         //  
-                                        echo htmlspecialchars(trim(substr($shifts[$x]['workplace'], 0, 7)), ENT_QUOTES) . "...<br>";
+                                        echo htmlspecialchars(trim(substr($shifts[$x]['workplace'], 0, 7)), ENT_QUOTES) . "...";
                                     else :
                                         //  
                                         //  if it's not that long, show the whole name
                                         //  
                                         echo htmlspecialchars($shifts[$x]['workplace'], ENT_QUOTES);
                                     endif;
+                                    ?>
+                                    <br>
+                                    <?php
                                     $x++;
                                     //  
                                 endwhile;
