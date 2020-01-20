@@ -1,5 +1,5 @@
 <?php session_start();
-require_once("../../classes/calendar.php");
+require_once("../../classes/Calendar.php");
 require_once("../../classes/Output.php");
 // 
 $inputId = isset($_GET['inputId']) ? $_GET['inputId'] : "";

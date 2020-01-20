@@ -1,0 +1,25 @@
+{% extends "/main.twig" %}
+
+{% block main %}
+
+<script>
+    // JavaScript popup window function
+    function basicPopup(url) {
+        //`
+        popupWindow = window.open(  url,
+                                    'popUpWindow',
+                                    'height=600,width=400,left=50,top=50,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes')
+    }
+    //
+</script>
+
+<main id="calendar">
+    <section class="section is-hidden-mobile">
+        {% include "index/calendar.twig" %}
+    </section>
+    <section class="section is-hidden-desktop">
+        {% include "index/calendarMobile.twig" %}
+    </section>
+</main>
+
+{% endblock main %}

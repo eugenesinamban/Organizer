@@ -1,80 +1,65 @@
-<?php session_start();
-require_once("../../classes/Users.php");
+<?php 
+
+session_start();
+
+require_once("../../bootstrap.php");
+require_once("../../models/Users.php");
+
 try {
-    //
+    
     // prepare input for query
-    //
-    $objects = Users::updatePrepare($_POST);
-    //
+    
+    $parameters = [
+
+        'firstName',
+        'lastName'
+
+    ];
+
+    $objects = [];
+
+    foreach ($parameters as $param) {
+
+        isset($_SESSION['update'][$param]) && "" !== $_SESSION['update'][$param] ? $objects[$param] = $_SESSION['update'][$param] : null;
+
+    }
+    
     // if invalid, return exception
-    //
-    if (!$objects) {
+    
+    if ([] === $objects) {
         //
         throw new Exception("Input is invalid!");
         //
     }
-    //
-    $objects = Users::addUserId($objects);
-    //
+    
+    $keys = [
+
+        'id' => $_SESSION['auth']['id']
+
+    ];
+    
     // if good, proceed with update
-    //
-    if (!Users::update($objects)) {
-        //
-        throw new Exception("Error occured. Please try again.");
-        //
-    }
-    //
+    
+    Users::update($objects, $keys);
+    
+    echo $twig->render('/index/handling.twig');
+
+    // redirect if successful
+
+    header("refresh:2;url=index.php");
+
 } catch (Error $e) {
     // 
-    Authenticate::logout();
+    $_SESSION = [];session_destroy();
     session_start();
-    $_SESSION['message'] = $e->getMessage();
+    $_SESSION['error']  = $e->getMessage();
     header("location:../../index.php?error=on");
     exit;
     // 
 } catch (Exception $e) {
     //
-    $_SESSION['message'] = $e->getMessage();
-    header("location:editProfile.php?error=on");
+    $_SESSION['error']  = $e->getMessage();
+    header("location:index.php?error=on");
     exit;
 }
-// 
-// redirect if successful
-// 
-header("refresh:2;url=index.php");
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <?php require_once("../../inc/css.html"); ?>
-    <link rel="stylesheet" href="../../style/index.css">
-    <title>Work Management</title>
-</head>
-<body>
-    <header>
-        <section class="hero">
-            <div class="hero-body">
-                <header>
-                    <h1 class="title is-1"><a href="../index.php">Organizer</a></h1>
-                    <div class="line"></div>
-                </header>
-            </div>
-        </section>
-    </header>
-    <main class="handling">
-        <h2 class="title is-3">Please wait, being redirected.</h2>
-        <span class="icon is-large">
-            <i class="fas fa-spinner fa-pulse"></i>
-        </span>
-    </main>
-    <footer class="footer">
-        <?php 
-            require_once("../../inc/footer.html");
-        ?>
-    </footer>
-</body>
-</html>

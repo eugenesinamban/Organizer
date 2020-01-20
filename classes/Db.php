@@ -27,7 +27,7 @@ class DB {
                 $pdo = new PDO($dsn, $user, $pass, $options);
             } catch (Throwable $e) {
                 error_log($e->getMessage());
-                throw new Exception("Error occured, please try again later!");
+                throw new Exception("Database connection failed!");
                 exit;
             }
         }

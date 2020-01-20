@@ -1,7 +1,7 @@
 <?php 
 session_start();
-require_once("classes/Authenticate.php");
-Authenticate::logout();
+$_SESSION = [];
+session_destroy();
 header("location:index.php");
 exit();
 

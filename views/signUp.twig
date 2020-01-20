@@ -1,0 +1,98 @@
+{% extends "main.twig" %}
+{% block css %}
+<link rel="stylesheet" href="/organizer-breakable/style/style.css">
+{% endblock css %}
+
+{% block header %}
+<div class="has-text-centered">
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1"><a href="index.php">Organizer</a></h1>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock header %}
+
+{% block main %}
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column"></div>
+            <div class="column is-two-fifths is-centered">
+                <div class="has-text-danger">
+                    {{ error }}
+                </div>
+                <div class="box">
+                    {% if post is empty %}
+                    <h2>Insert Details</h2>
+                    <form action="signUp.php" method="post">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="email" name="email" id="email" placeholder="E-mail Address" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="password" name="password" id="password" placeholder="Password" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" name="lastName" id="lastName" placeholder="Last Name"required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                        <input class="input" type="text" name="firstName" id="firstName" placeholder="First Name"required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="submit"class="button is-primary">
+                        </div>
+                    </form>
+                    <br>
+                    <div class="field">
+                        <h2 class="is-size-5">Already have an account?</h2>
+                        <a href="../index.php" class="button is-danger is-light">Go Back!</a>
+                    </div>
+                    <div class="field">
+                        <h2 class="is-size-5">Email not yet validated?</h2>
+                        <a href="validate.php" class="button is-warning is-light">Validate</a>
+                    </div>
+                    {% else %}
+                    <div class="field is-large">
+                        <h2>Please Confirm</h2>
+                    </div>
+                    <form action="signUpHandling.php" method="post">
+                        <div class="field">
+                            <h2>Email : {{ signUp.email|e }} </h2>
+                        </div>
+                        <div class="field">
+                            <h2>Password : NOT SHOWN FOR SECURITY </h2>
+                        </div>
+                        <div class="field">
+                                <h2>Last Name : {{ signUp.lastName|e }} </h2>
+                        </div>
+                        <div class="field">
+                                <h2>First Name : {{ signUp.firstName|e }} </h2>
+                        </div>
+                        <div class="field">
+                            <button type="submit" class="button is-primary is-grouped-centered">submit</button>
+                            <a href="signup.php" class="button is-danger is-light is-grouped-centered">Go Back</a>
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="column"></div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

@@ -1,0 +1,59 @@
+{% extends "/main.twig" %}
+
+{% block header %}
+<section class="hero">
+    <div class="hero-body">
+        <h1 class="title is-1"><a href="#">Organizer</a></h1>
+        <div class="line"></div>
+    </div>
+</section>
+{% endblock header %}
+
+{% block main %}
+{% if shifts is empty %}
+<script>
+    window.close();
+</script>
+{% endif %}
+<main id="details-shift">
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-one-third is-offset-one-third">
+                    <h2 class="title is-3">{{ date(date.year ~ "-" ~ date.month ~ "-" ~ date.date) |date("Y, F d")}}</h2>
+                    {% for shift in shifts %}
+                    <table class="table is-striped is-bordered">
+                        <tr>
+                            <td>Shift</td>
+                            <td>{{ date(shift.shiftStart)|date("g:ia") }} - {{ shift.shiftEnd|date("g:ia") }}</td>
+                        </tr>
+                        <tr>
+                            <td>Workplace</td>
+                            <td>{{ shift.workplace }}</td>
+                        </tr>
+                        <tr>
+                            <td>Wage</td>
+                            <td>{{ shift.wage }}</td>
+                        </tr>
+                        <tr>
+                            <td>Transportation Allowance</td>
+                            <td>{{ shift.transportation }}</td>
+                        </tr>
+                    </table>
+                    <form action="shiftDeleteHandling.php" method="post">
+                        <div class="field">
+                            <a href="shiftUpdate.php?date={{ date.date }}&month={{ date.month }}&year={{ date.year }}&inputId={{ shift.inputId }}" class="button is-warning">Edit Shift</a>
+                            <button class="button is-danger" type="submit" name="inputId" value="{{shift.inputId}} ?>">Delete Shift</button>
+                        </div>
+                    </form>
+                    {% endfor %}
+                    <div class="field">
+                        <a href="shiftInsert.php?date={{ date.date }}&month={{ shift.month }}&year={{ shift.year }}" class="button is-info">Add Shift</a>
+                        <button onclick="parent.window.close();" class="button is-primary">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock main %}

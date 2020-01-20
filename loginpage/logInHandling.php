@@ -1,22 +1,29 @@
-<?php session_start();
-require_once("../classes/Users.php");
-require_once("../classes/Authenticate.php");
-// 
-// prepare input for query
-// checks if input is valid, then escapes input
-// 
+<?php 
+
+session_start();
+
+require_once("../models/Users.php");
+
 try {
-    // 
-    Authenticate::login($_POST);    
+    
+    // prepare input for query
+
+    $objects = [
+
+        'email' => $_POST['email'],
+        'password' => $_POST['password']
+
+    ];
+
+    Users::login($objects);
     // 
     // redirect if succsessful
     // 
     header("location:../index/index.php");
-    // 
 } catch (Throwable $e) {
     // 
     $_SESSION["login_email"] = $_POST["email"];
-    $_SESSION['message'] = $e->getMessage();
+    $_SESSION['error'] = $e->getMessage();
     header('Location:../index.php?error=on');
     exit;
 }

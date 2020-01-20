@@ -1,0 +1,118 @@
+<div class="container">
+    <div class="column is-10 is-offset-1">
+        <div class="has-text-danger">
+            {{ error }}
+        </div>
+        <div class="box">
+            <h2 class="title is-2">Dashboard</h2>
+            <form action="#" method="get">
+                <div class="field has-addons has-addons-centered">
+                    <div class="select">
+                        <select name="month">
+                            {% for i in range(1, 12) %}
+                            <option value="{{ i }}"> {{ date('2020-' ~ i ~'-01')|date("F") }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="select">
+                        <select name="year">
+                            {% for i in range(2020, 2030) %}
+                            <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <input type="submit" class="button is-black">
+                </div>
+            </forms>
+            <section class="section" id="welcome-hidden-touch">
+                <div class="container">
+                    <table class="table is-bordered is-striped is-fullwidth">
+                        <tr>
+                            <th colspan="7">{{ date('2020-' ~ date.month ~ '-01')|date("F") }} - {{ date.year }} </th>
+                        </tr>
+                        <tr>
+                            {% for key, days in calendar.showDays() %}
+                            <th {% if key == 6 %} class="has-text-danger" {% endif %}>
+                                {{ days }}
+                            </th>
+                            {% endfor %}
+                        </tr>
+                        <!-- end row of names of the day -->
+                        <!-- start of the dates of the month -->
+                        <tr>
+                            {% set counter = 0 %}
+                            {% if calendar.startDay() != 1 %}
+                            {% for buffer in range(1, calendar.startDay() - 1) %}
+                            {% set counter = counter + 1 %}    
+                            <td></td>
+                            {% endfor %}
+                            {% endif %}
+                            {% for dateDay in range(1, calendar.endDate()) %}
+
+                                {% if counter is divisible by(7) %}
+                                </tr><tr>
+                                {% endif %}
+
+                                {% set counter = counter + 1 %}
+
+                                {% if workplace.getWorkplaces() is empty %}
+
+                                    <td>
+                                        {{ dateDay }}
+                                    </td>
+                                    
+                                {% elseif shift.fetchShifts(dateDay,date.month,date.year) is not empty %}
+                                    <td>
+                                        <a href="shiftmanage/details.php?date={{ dateDay }}&month={{date.month}}&year={{date.year}}" onclick="basicPopup(this.href);return false">
+
+                                            {{ dateDay }}<br>
+                                            {% if shift.fetchShifts(dateDay,date.month,date.year)|length > 2 %}
+
+                                                {% for shifts in shift.fetchShifts(dateDay,date.month,date.year)[:2] %}
+
+                                                    {{ shifts.workplace|length > 12 ? shifts.workplace|e|u.truncate(12, '...') : shifts.workplace|e }} <br>
+                                                    
+                                                {% endfor %}
+
+                                                <div class="is-size-6">See more..</div>
+
+                                            {% else %}
+
+                                                {% for shifts in shift.fetchShifts(dateDay,date.month,date.year) %}
+
+                                                    {{ shifts.workplace|length > 12 ? shifts.workplace|e|u.truncate(12, '...') : shifts.workplace|e }} <br>
+
+                                                {% endfor %}
+
+                                            {% endif %}
+
+                                        </a>
+                                    </td>
+                                {% else %}
+                                <td>
+                                    <a href="shiftmanage/shiftInsert.php?date={{ dateDay }}&month={{date.month}}&year={{date.year}}" onclick="basicPopup(this.href);return false">{{ dateDay }}</a>
+                                </td>
+                                {% endif %}
+                                {% endfor %}
+                            {% if counter is not divisible by(7)%}    
+                            {% for buffer in range(1, (calendar.numberOfWeeks() * 7) - counter) %}
+                                <td></td>
+                            {% endfor %}
+                            {% endif %}
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <div id="main-buttons">
+                <div class="buttons is-centered">
+                    <a href="workmanage"class="button is-normal is-info is-outlined">Workplace Management</a>
+                    <a href="profilemanage"class="button is-normal is-info is-outlined">Profile Management</a>
+                    <a href="breakdown" class="button is-normal is-info is-outlined">Breakdown</a>
+                </div>
+                <div class="buttons is-centered">
+                    <a href="../logoutHandling.php"class="button is-normal is-danger">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

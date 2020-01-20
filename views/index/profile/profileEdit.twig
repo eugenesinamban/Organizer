@@ -1,0 +1,132 @@
+{% extends "/main.twig" %}
+
+{% block main %}
+<main>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="has-text-danger">
+                {{ error }}
+            </div>
+            {% if updateEmail is null and updatePassword is null and updateProfile is null %}
+            <div id="profile-edit">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                        <form action="#" method="post">
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-warning is-fullwidth" name="updateEmail">Update E-mail Address</button>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-warning is-fullwidth" name="updateProfile">Update Profile</button>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-warning is-fullwidth" name="updatePassword">Update Password</button>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <a class="button is-danger is-fullwidth" href="index.php">Back</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% elseif updatePassword is not null %}
+            <div id="profile-input">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                        <form action="updatePassword.php" method="post">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="password" name="oldPassword" placeholder="Old Password" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="password" name="newPassword" placeholder="New Password" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <button type="submit" class="button is-primary">Submit</button>
+                                <a href="" class="button is-danger">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% elseif updateEmail is not null %}
+            <div id="profile-input">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                        <form action="updateEmail.php" method="post">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="email" name="oldEmail" placeholder="Old E-mail Address">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="email" name="newEmail" placeholder="New E-Mail Address">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <button class="button is-primary" type="submit">Submit</button>
+                                <a href="" class="button is-danger">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% elseif updateProfile is not null %}
+            <div id="profile-input">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                        <form action="updateProfile.php" method="post">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="text" name="lastName" id="lastname" placeholder="Last Name"><br>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="text" name="firstName" id="firstname" placeholder="First Name"><br>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <button type="submit" class="button is-primary">Submit</button>
+                                <a href="" class="button is-danger">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock main %}

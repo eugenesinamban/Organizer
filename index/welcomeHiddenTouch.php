@@ -145,13 +145,16 @@
                                         // 
                                         //  shortens name if it's too long
                                         //  
-                                        echo htmlspecialchars(trim(substr($output['workplace'], 0, 7)), ENT_QUOTES) . "...<br>";
+                                        echo htmlspecialchars(trim(substr($output['workplace'], 0, 7)), ENT_QUOTES) . "...";
                                     else :
                                         // 
                                         //  if it's not that long, show the whole name
                                         //  
                                         echo htmlspecialchars($output['workplace'], ENT_QUOTES);
                                     endif;
+                                    ?>
+                                    <br>
+                                    <?php
                                     //  
                                 endforeach;
                                 //  

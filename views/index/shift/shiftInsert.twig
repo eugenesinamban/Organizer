@@ -1,0 +1,65 @@
+{% extends "/main.twig" %}
+
+{% block header %}
+<section class="hero">
+    <div class="hero-body">
+        <h1 class="title is-1"><a href="#">Organizer</a></h1>
+        <div class="line"></div>
+    </div>
+</section>
+{% endblock header %}
+
+{% block main %}
+<main id="shift-input">`
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="column is-6 is-offset-3">
+                <div class="box">
+                    <form action="shiftInsertHandling.php" method="post">
+                        <div class="field"> 
+                            <label class="label" for="date1">Shift Start Date : </label>
+                            <div class="control">
+                                <input class="input" type="date" name="shiftDateStart" id="date1" min="2019-01-01" max="2050-12-31" value="{{ date.year }}-{{ date.month }}-{{ date.date }}" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="shift_Start">Shift Start : </label>
+                            <div class="control">
+                                    <input class="input" type="time" name="shiftStart" id="shift_Start" placeholder="Shift Start" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="date2">Shift End Date :</label>
+                            <div class="control">
+                                <input class="input" type="date" name="shiftDateEnd" id="date2" min="2019-01-01" max="2050-12-31" value="{{ date.year }}-{{ date.month }}-{{ date.date }}" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="shift_End">Shift End : </label>
+                            <div class="control">
+                                    <input class="input" type="time" name="shiftEnd" id="shift_End" placeholder="Shift End" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="workplace">Workplace : </label>
+                            <div class="control is-expanded">
+                                <div class="select is-fullwidth">
+                                    <select name="workplaceId" id="workplace">
+                                        {% for workplace in workplaces %}
+                                        <option value="{{ workplace.inputId }}">{{ workplace.workplace }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button type="submit" class="button is-primary">Submit</button>
+                            <a class="button is-danger" href="details.php?date={{ date.date }}&month={{ date.month }}&year={{ date.year }}">Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock main %}

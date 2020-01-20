@@ -1,0 +1,75 @@
+{% extends "main.twig" %}
+
+{% block header %}
+<section class="hero">
+    <div class="hero-body">
+        <h1 class="title is-1"><a href="#">Organizer</a></h1>
+        <div class="line"></div>
+    </div>
+</section>
+{% endblock header %}
+
+{% block main %}
+<script>
+    //
+    function workplaceUpdateplaceFromPop(inputId) {
+        //
+        var url = "workplaceUpdate.php?inputId=" + inputId;
+        window.opener.location = url;
+    }
+    //
+</script>
+{% if workplace is empty %}
+    <script>
+        parent.window.close();
+    </script>
+{% endif %}
+
+<main id="details-workplace">
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column"></div>
+                <div class="column is-one-third">
+                    <table class="table is-striped">
+                        <tr>
+                            <td>Workplace Name :</td>
+                            <td>{{ workplace.workplace|e }}</td>
+                        </tr>
+                        <tr>
+                            <td>Hourly Wage :</td>
+                            <td>{{ workplace.wage|e }}</td>
+                        </tr>
+                        <tr>
+                            <td>Transportation Allowance :</td>
+                            <td>{{ workplace.transportation }}</td>
+                        </tr>
+                        <tr>
+                            <td>Address :</td>
+                            <td>{{ workplace.address|e }} </td>
+                        </tr>
+                        <tr>
+                            <td>Contact Details :</td>
+                            <td>{{ workplace.contactDetails|e }} </td>
+                        </tr>
+                        <tr>
+                            <td>Date Started :</td>
+                            <td>{{ workplace.startDate|e }} </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="column"></div>
+            </div>
+            <form action="workplaceDeletePopHandling.php" method="post">
+                <div class="field">    
+                    <button onclick="workplaceUpdateplaceFromPop(' ~ {{ inputId }} ~ '); parent.window.close();" class="button is-warning">Edit Workplace</button>
+                    <button class="button is-danger" type="submit" name="inputId" value="{{ inputId }}">Delete Workplace</button>
+                    <button class="button is-primary" onClick="parent.window.close();">Back</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+
+{% endblock main %}

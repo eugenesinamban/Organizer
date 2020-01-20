@@ -1,0 +1,71 @@
+{% extends "/main.twig" %}
+
+{% block main %}
+    <main id="workplace-input">
+        <section class="section">
+            <div class="container is-fluid">
+                <div class="columns">
+                    <div class="column"></div>
+                    <div class="column is-one-third">
+                        <div class="has-text-danger">
+                            {{ error }}
+                        </div>
+                        <div class="box">
+                            <form action="workplaceUpdateHandling.php" method="post">
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="text" name="workplace" placeholder="Workplace" class="input">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="number" name="wage" placeholder="Wage" class="input">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="number" name="transportation" placeholder="Transportation" class="input">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                            <input type="text" name="address" placeholder="Address" class="input">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="text" name="contactDetails" placeholder="Contact Details" class="input"> 
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="startDate" class="label">Date Started :</label>
+                                    <div class="control">
+                                        <input type="date" name="startDate" id="startDate" class="input">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="savedWorkplace" class="label">Workplace to be edited:</label>
+                                    <div class="control is-expanded">
+                                        <div class="select is-fullwidth">
+                                            <select name="inputId" id="savedWorkplace">
+                                                {% for workplace in workplaces %}
+                                                <option value="{{ workplace.inputId|e }}" {% if inputId == workplace.inputId %} selected {% endif %} >{{ workplace.workplace|e }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <button type="submit" class="button is-primary">Submit</button>
+                                    <a href="index.php" class="button is-danger">Back</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="column"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock main %}

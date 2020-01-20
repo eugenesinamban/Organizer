@@ -48,7 +48,7 @@ main table td a {
 
 #calendar table {
     table-layout: fixed;
-    box-shadow: 0 20px 20px 0 rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 3px  black;
 }
 
 #calendar table tr th {

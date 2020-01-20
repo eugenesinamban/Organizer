@@ -1,0 +1,85 @@
+{% extends "main.twig" %}
+
+{% block main %}
+<script>
+    // JavaScript popup window function
+    function basicPopup(url) {
+        //`
+        popupWindow = window.open(  url,
+                                    'popUpWindow',
+                                    'height=600,width=400,left=50,top=50,resizable=no,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes')
+    }
+    //
+</script>
+<main id="work">
+    <section class="section">
+        <div class="container has-text-centered">
+            <div class="has-text-danger">
+                {{ error }}
+            </div>
+            <div class="box">
+                <div class="column is-three-fifths is-offset-one-fifth">
+                    <h2 class="title is-3">Workplaces Saved</h2>
+                    <table class="table is-bordered is-striped is-fullwidth">
+                        <tr>
+                            <th><div class="is-size-7-touch">Workplace</div></th>
+                            <th><div class="is-size-7-touch">Edit</div></th>
+                            <th><div class="is-size-7-touch">Delete</div></th>
+                        </tr>
+                    {% if workplace.getWorkplaces() is not empty %}
+                        {% for place in workplace.getWorkplaces() %}
+                        <tr class="is-hidden-touch">
+                            <td class="workplace">
+                                <a href="details.php?inputId={{ place.inputId }}" onclick="basicPopup(this.href);return false">
+                                    <div class="is-size-5">
+                                        {{ place.workplace|length > 30 ? place.workplace|e|u.truncate(30,'...') : place.workplace|e }}
+                                    </div>
+                                </a>
+                            </td>
+                            <td class="editDelete">
+                                <form action="workplaceUpdate.php" method="post">
+                                    <button id="edit-button" type="submit" name="inputId" value="{{ place.inputId }}">
+                                        <img src="https://image.flaticon.com/icons/svg/61/61456.svg">
+                                    </button>
+                                </form>
+                            </td>
+                            <td class="editDelete">
+                                <form action="workplaceDeleteHandling.php" method="post">
+                                    <button type="submit" name="inputId" value="{{ place.inputId }}" class="delete is-medium"></button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr class="is-hidden-desktop">
+                            <td class="workplace">
+                                <a href="details.php?inputId={{ place.inputId }}" onclick="basicPopup(this.href);return false">
+                                    <div class="is-size-7-touch is-size-5-desktop">
+                                        {{ place.workplace|length > 12 ? place.workplace|e|u.truncate(12,'...') : place.workplace|e }}
+                                    </div>
+                                </a>
+                            </td>
+                            <td class="editDelete">
+                                <form action="workplaceUpdate.php" method="post">
+                                    <button id="edit-button" type="submit" name="inputId" value="{{ place.inputId }}">
+                                        <img src="https://image.flaticon.com/icons/svg/61/61456.svg">
+                                    </button>
+                                </form>
+                            </td>
+                            <td class="editDelete">
+                                <form action="workplaceDeleteHandling.php" method="post">
+                                    <button type="submit" name="inputId" value="{{ place.inputId }}" class="delete is-medium"></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                        <tr>
+                            <td colspan="5"><a href="workplaceInsert.php" class="button is-info">Add Workplace</a></td>
+                        </tr>
+                    </table>
+                    <a href="../index.php" class="button is-primary">Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock main %}

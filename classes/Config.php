@@ -10,6 +10,7 @@ class Config {
         $config = ['db' => $db, 'host' => $host, 'user' => $user, 'pass' => $pass];
         return $config;
     }
+
 }
 
 ?>
