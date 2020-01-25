@@ -1,33 +1,35 @@
 <?php 
-
-session_start();
+ 
+ session_start();
 
 require_once("../../bootstrap.php");
 require_once("../../models/Users.php");
+require_once("../../classes/Token.php");
+require_once("../../models/AccessToken.php");
 
 try {
-    //
+    
     // prepare input
-    //
+    
     $parameters = [
 
         'email' => $_POST['email'],
         'password' => $_POST['password']
 
     ];
-    
+
     $objects = Users::prepare($parameters);
     
     // if log in is valid, check if it's the same as the one logged in
-    
+
     $checkUser = Users::findBy(['email' => $objects['email']]);
     
     if ($checkUser['id'] !== $_SESSION['auth']['id']) {
-        //
+        
         throw new Exception("Incorrect E-mail and password combination!");
-        //
+        
     }
-
+    
     if (false === password_verify($objects['password'], $checkUser['password'])) {
 
         throw new Exception("Incorrect E-mail and password combination!");
@@ -36,29 +38,36 @@ try {
 
     // all check passed, may proceed with update
 
-    $parameters = [
+    $_SESSION['auth']['token'] = Token::generate();
+    
+    if (AccessToken::findBy(['userId' => $_SESSION['auth']['id']])) {
+
+        $objects = [
+
+            'token' => $_SESSION['auth']['token'],
+            'log' => time() + 3600
+    
+        ];        
         
-        'profile',
-        'password',
-        'email'
+        AccessToken::update($objects, ['userId' => $_SESSION['auth']['id']]);
 
-    ];
+    } else {
 
-    foreach ($parameters as $param) {
+        $objects = [
 
-        if (isset($_SESSION['update'][$param])) {
-
-            echo $param;
-
-        }
+            'token' => $_SESSION['auth']['token'],
+            'userId' => $_SESSION['auth']['id'],
+            'log' => time() + 3600
+    
+        ];
+        
+        AccessToken::insert($objects);
 
     }
 
-    
+    header('location:profileEdit.php');
+    exit;
 
-    var_dump($_SESSION['update']);
-
-    // redirect if successful
 } catch (Error $e) {
     // 
     $_SESSION = [];session_destroy();
@@ -68,9 +77,9 @@ try {
     exit;
     // 
 } catch (Exception $e) {
-    //
-    $_SESSION['error']  = $e->getMessage();
-    header("location:deleteAccount.php?error=on");
+    // 
+    $_SESSION['error'] = $e->getMessage();
+    header("location:confirm.php?error=on");
     exit;
 }
 ?>

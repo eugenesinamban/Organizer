@@ -18,7 +18,7 @@ try {
     
     foreach ($parameters as $param) {
 
-        $objects[$param] = $_SESSION['update'][$param];
+        $objects[$param] = $_POST[$param];
 
     }
 
@@ -39,6 +39,12 @@ try {
         throw new Exception("Username unavailable, please choose another!");
 
     }
+
+    if (AccessToken::findBy(['userId'])['token'] !== $_SESSION['auth']['token']) {
+
+        throw new Exception("Edit unauthorized!");
+
+    }    
     
     // if available, prepare objects and keys
     

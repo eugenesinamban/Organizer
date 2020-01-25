@@ -12,8 +12,6 @@ $viewVars = [
 
 ];
 
-// var_dump(INDEX);
-
 echo $twig->render('/index/profile/profileIndex.twig', $viewVars);
 
 ?>

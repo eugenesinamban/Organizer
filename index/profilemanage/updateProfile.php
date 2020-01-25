@@ -20,7 +20,7 @@ try {
 
     foreach ($parameters as $param) {
 
-        isset($_SESSION['update'][$param]) && "" !== $_SESSION['update'][$param] ? $objects[$param] = $_SESSION['update'][$param] : null;
+        isset($_POST[$param]) && "" !== $_POST[$param] ? $objects[$param] = $_POST[$param] : null;
 
     }
     
@@ -30,6 +30,12 @@ try {
         //
         throw new Exception("Input is invalid!");
         //
+    }
+
+    if (AccessToken::findBy(['userId' => $_SESSION['auth']['id']])['token'] !== $_SESSION['auth']['token']) {
+
+        throw new Exception("Edit unauthorized!");
+
     }
     
     $keys = [

@@ -19,7 +19,7 @@ try {
 
     foreach ($parameters as $param) {
         
-        $objects[$param] = $_SESSION['update'][$param];
+        $objects[$param] = $_POST[$param];
 
     }
     //

@@ -11,7 +11,7 @@ try {
 
     foreach($_POST as $key => $value) {
 
-        $_SESSION['update'][$key] = $value;
+        $_POST[$key] = $value;
 
     }
 
