@@ -13,7 +13,9 @@ readily available in this website, provided it was saved by the user upon regist
 Computes your salary, and total work hours per month.
 
 Powered by Bulma framework and Twig template Engine.
+
 https://bulma.io/
+
 https://twig.symfony.com/
 
 バイトシフト管理システム。
