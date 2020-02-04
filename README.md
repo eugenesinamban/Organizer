@@ -2,6 +2,8 @@
 
 http://organizer.epizy.com
 
+!(image/Login.png)
+
 Part-time job shift organizer
 
 Created for foreigners, by a foreigner living and working part-time in Japan.
@@ -20,3 +22,4 @@ https://twig.symfony.com/
 バイト先の情報や、労働時間、給料を調べることが可能。
 
 BulmaフレームワークとTwigテンプレートエンジンを使用した制作。
+
