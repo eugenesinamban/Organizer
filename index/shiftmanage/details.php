@@ -1,10 +1,7 @@
 <?php 
 
-session_start();
-
-require_once("../antiHack.php");
 require_once("../../bootstrap.php");
-require_once("../../models/Shift.php");
+require_once(MODELS . "/Shift.php");
 
 $date = $_GET['date'] ?? null;
 $month = $_GET['month'] ?? null;

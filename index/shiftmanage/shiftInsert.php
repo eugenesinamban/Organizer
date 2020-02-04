@@ -1,10 +1,8 @@
 <?php 
 
-session_start();
-
 require_once("../../bootstrap.php");
-require_once("../../models/workplace.php");
-require_once("../../classes/Calendar.php");
+require_once(MODELS . "/workplace.php");
+require_once(CLASSES . "/Calendar.php");
 
 // set proper date values
 

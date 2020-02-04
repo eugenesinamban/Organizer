@@ -1,8 +1,8 @@
-<?php session_start();
+<?php 
 try {
     // 
     require_once("../../bootstrap.php");
-    require_once("../../models/Workplace.php");
+    require_once(MODELS . "/Workplace.php");
     
     // prepare input for query
     // checks if input is valid, then escapes input

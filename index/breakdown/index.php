@@ -1,10 +1,8 @@
 <?php 
 
-session_start();
-
 require_once('../../bootstrap.php');
-require_once('../../classes/Calendar.php');
-require_once('../../models/Utilities.php');
+require_once(CLASSES . '/Calendar.php');
+require_once(MODELS . '/Utilities.php');
 
 isset($_POST['year']) && is_numeric($_POST['year']) ? (Calendar::setYear($_POST['year'])) : null;
 

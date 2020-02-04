@@ -1,11 +1,9 @@
 <?php 
  
- session_start();
-
 require_once("../../bootstrap.php");
-require_once("../../models/Users.php");
-require_once("../../classes/Token.php");
-require_once("../../models/AccessToken.php");
+require_once(MODELS . "/Users.php");
+require_once(MODELS . "/AccessToken.php");
+require_once(CLASSES . "/Token.php");
 
 try {
     

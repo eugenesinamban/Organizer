@@ -1,8 +1,7 @@
 <?php 
-session_start();
 
 require_once("../../bootstrap.php");
-require_once("../../models/Shift.php");
+require_once(MODELS . "/Shift.php");
 
 try {
     //

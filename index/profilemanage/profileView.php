@@ -1,10 +1,10 @@
-<?php session_start();
+<?php 
 try {
     // 
     // prepare files
     // 
     require_once("../../bootstrap.php");
-    require_once("../../models/Users.php");
+    require_once(MODELS . "/Users.php");
     // 
     // prepare objects
     // 

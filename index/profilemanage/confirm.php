@@ -1,9 +1,7 @@
 <?php 
 
-session_start();
-
 require_once("../../bootstrap.php");
-require_once("../../models/Users.php");
+require_once(MODELS . "/Users.php");
 
 $error = isset($_GET['error']) && "on" === $_GET['error'] ? $_SESSION['error'] : null;
 

@@ -1,10 +1,6 @@
 <?php 
 
-session_start();
-
 require_once("../../bootstrap.php");
-
-
 
 $updateProfile = $_POST['updateProfile'] ?? null;
 $updateEmail = $_POST['updateEmail'] ?? null;

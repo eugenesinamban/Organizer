@@ -1,11 +1,11 @@
 <?php 
-session_start();
+
 try {
-    require_once("antiHack.php");
+    
     require_once("../bootstrap.php");
-    require_once("../classes/Calendar.php");
-    require_once("../models/Workplace.php");
-    require_once("../models/Shift.php");
+    require_once(CLASSES . "/Calendar.php");
+    require_once(MODELS . "/Workplace.php");
+    require_once(MODELS . "/Shift.php");
     
     // var_dump(INDEX);
 
@@ -14,8 +14,8 @@ try {
     $shift = new Shift();
     $error = isset($_GET['error']) && "on" === $_GET['error'] ? $_SESSION['error'] : null;
     
-    isset($_GET['month']) && is_numeric($_GET['month']) ? (Calendar::setMonth($_GET['month'])) : null;
-    isset($_GET['year']) && is_numeric($_GET['year']) ? (Calendar::setYear($_GET['year'])) : null;
+    isset($_GET['month']) && is_numeric($_GET['month']) ? Calendar::setMonth($_GET['month']) : null;
+    isset($_GET['year']) && is_numeric($_GET['year']) ? Calendar::setYear($_GET['year']) : null;
 
     $viewVars = [
         // 

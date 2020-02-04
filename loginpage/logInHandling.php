@@ -1,8 +1,7 @@
 <?php 
 
-session_start();
-
-require_once("../models/Users.php");
+require_once("../bootstrap.php");
+require_once(MODELS . "/Users.php");
 
 try {
     

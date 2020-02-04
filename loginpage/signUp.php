@@ -1,5 +1,6 @@
-<?php session_start();
-require("../bootstrap.php");
+<?php 
+
+require_once("../bootstrap.php");
 // 
 // if post is set, prepare variables
 // 

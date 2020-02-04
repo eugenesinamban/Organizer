@@ -1,9 +1,9 @@
-<?php session_start();
+<?php 
 try {
     // 
     // prepare files
-    require_once("../../models/Workplace.php");
     require_once("../../bootstrap.php");
+    require_once(MODELS . "/Workplace.php");
 
 
     $workplace = new Workplace();

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once(__DIR__.'/bootstrap.php');
 
 $error = isset($_GET['error']) && "on" === $_GET['error'] ? $_SESSION['error'] : null;
