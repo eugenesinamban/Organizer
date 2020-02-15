@@ -35,6 +35,8 @@ try {
         throw new Exception("Edit unauthorized!");
 
     }
+
+    AccessToken::clear();
     
     $keys = [
 
@@ -54,7 +56,8 @@ try {
 
 } catch (Error $e) {
     // 
-    $_SESSION = [];session_destroy();
+    $_SESSION = [];
+    session_destroy();
     session_start();
     $_SESSION['error']  = $e->getMessage();
     header("location:../../index.php?error=on");

@@ -38,6 +38,25 @@ class AccessToken extends AppModel {
 
     }
 
+    public static function clearAll() : void {
+
+        try {
+
+            $pdo = DB::databaseConnect();
+            
+            $sql = "    DELETE FROM " . self::$table .
+                    "   WHERE `log` < " . time();
+
+            $pdo->prepare($sql)->execute();
+
+        } catch (Exception $e) {
+
+            throw $e;
+
+        }
+
+    }
+
 }
 
 ?>

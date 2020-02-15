@@ -35,6 +35,14 @@ try {
         //
     }
     
+    if (AccessToken::findBy(['userId' => $_SESSION['auth']['id']])['token'] !== $_SESSION['auth']['token']) {
+
+        throw new Exception("Edit unauthorized!");
+
+    }
+
+    AccessToken::clear();
+
     // if it matches, hash new pass
     
     $values['password'] = password_hash($objects['newPassword'], PASSWORD_DEFAULT);

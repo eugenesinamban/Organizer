@@ -38,11 +38,13 @@ try {
 
     }
 
-    if (AccessToken::findBy(['userId'])['token'] !== $_SESSION['auth']['token']) {
+    if (AccessToken::findBy(['userId' => $_SESSION['auth']['id']])['token'] !== $_SESSION['auth']['token']) {
 
         throw new Exception("Edit unauthorized!");
 
-    }    
+    }
+
+    AccessToken::clear();
     
     // if available, prepare objects and keys
     
