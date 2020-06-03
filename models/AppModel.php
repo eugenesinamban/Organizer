@@ -85,6 +85,12 @@ class AppModel {
     
     static public function insert(array $objects)  {
         
+        if (null === $objects) {
+
+            throw new Exception("Please enter correct values");
+
+        }
+
         $values = static::Prepare($objects);
         
         $keys = array_keys($values);
@@ -125,10 +131,16 @@ class AppModel {
         
     }
     
-    static public function update(array $objects, array $keys) : void {
+    static public function update(array $objects = null, array $keys = null) : void {
         
         // use array keys to make placeholder
         
+        if (null === $objects || null === $keys) {
+
+            throw new Exception("Please enter correct values");
+
+        }
+
         $placeholder = [];
         $where = [];
 
@@ -190,6 +202,12 @@ class AppModel {
     
     static public function delete(array $objects)  {
         
+
+        if (null === $objects) {
+
+            throw new Exception("Please enter correct values");
+
+        }
         // prepare placeholder
         // add user id for WHERE query
         

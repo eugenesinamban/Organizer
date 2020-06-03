@@ -2,10 +2,13 @@
 
 require_once("../../bootstrap.php");
 require_once(MODELS . "/Shift.php");
+require_once(CLASSES . "/Compute.php");
 
 $date = $_GET['date'] ?? null;
 $month = $_GET['month'] ?? null;
 $year = $_GET['year'] ?? null;
+$shifts = Shift::fetchShifts($date, $month, $year);
+$compute = new Compute();
 
 $viewVars = [
 
@@ -16,7 +19,8 @@ $viewVars = [
         'year' => $year
 
     ],
-    'shifts' => Shift::fetchShifts($date, $month, $year)
+    'shifts' => $shifts,
+    'compute' => $compute
 
 ];
 

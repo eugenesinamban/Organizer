@@ -32,8 +32,8 @@
                             <td>{{ shift.workplace }}</td>
                         </tr>
                         <tr>
-                            <td>Wage</td>
-                            <td>{{ shift.wage }}</td>
+                            <td>Total Pay</td>
+                            <td>{{ shift.wage * compute.totalTime(shift) }}</td>
                         </tr>
                         <tr>
                             <td>Transportation Allowance</td>
